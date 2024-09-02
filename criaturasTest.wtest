@@ -1,0 +1,81 @@
+import criaturas.*
+describe "Test de criaturas" {
+
+    const mascota1= new Mascota(edad=12,tieneCuernos = true)
+    const mascota2= new Mascota(edad=6,tieneCuernos = false)
+    const mascota3= new Mascota(edad=15,tieneCuernos = true)
+    const mascota4= new Mascota(edad=5,tieneCuernos = true)
+
+    const duendeGuardian = new Duende(astucia=25, poder= 4, rol=guardian)
+    const duendeHechicero = new Duende(astucia=20, poder=5, rol=hechicero)
+    const duendeDomador = new Duende(astucia=20, poder=3, rol=new Domador())
+    const hadaGuardian = new Hada(astucia=55, poder=4, rol=guardian)
+    const hadaHechicero = new Hada(astucia=40, poder=5, rol=hechicero)
+    const hadaDomador = new Hada(astucia=60, poder=2, rol=new Domador())
+ 
+    method initialize() {
+        duendeDomador.rol().mascotas().addAll([mascota1, mascota2])
+        hadaDomador.rol().mascotas().addAll([mascota3, mascota4])
+    }
+    test "Poder ofensivo del duendeGuardian" {
+        assert.equals((10*4 + 100) *1.1, duendeGuardian.poderOfensivo())
+    }
+    test "Poder ofensivo del duendeHechicero" {
+        assert.equals((10*5) *1.1, duendeHechicero.poderOfensivo())
+    }
+    test "Poder ofensivo del duendeDomador" {
+        assert.equals((10*3+150) *1.1, duendeDomador.poderOfensivo())
+    }
+    test "Poder ofensivo del hadaGuardian" {
+        assert.equals((10*4 + 100) , hadaGuardian.poderOfensivo())
+    }
+    test "Poder ofensivo del hadaHechicero" {
+        assert.equals((10*5) , hadaHechicero.poderOfensivo())
+    }
+    test "Poder ofensivo del hadaDomador" {
+        assert.equals((10*2+ 2*150) , hadaDomador.poderOfensivo())
+    }
+    
+    test "duendeGuardian no es extraordinario" {
+        assert.notThat(duendeGuardian.esExtraordinaria())
+    }
+    test "duendeHechicero es extraordinario" {
+        assert.that(duendeHechicero.esExtraordinaria())
+    }
+    test "duendeDomandor no es extraordinario" {
+        assert.notThat(duendeDomador.esExtraordinaria())
+    }
+
+    test "duendeGuardian no es esFormidable" {
+        assert.notThat(duendeGuardian.esFormidable())
+    }
+    test "duendeHechicero es esFormidable" {
+        assert.that(duendeHechicero.esFormidable())
+    }
+    test "duendeDomandor no es esFormidable" {
+        assert.notThat(duendeDomador.esFormidable())
+    }
+
+    test "hadaGuardian es astuta" {
+        assert.that(hadaGuardian.esAstuta())
+    }
+    test "hadaHechicero no es astuta" {
+        assert.notThat(hadaHechicero.esAstuta())
+    }
+
+    test "hadaHDomador es astuta" {
+        assert.that(hadaDomador.esAstuta())
+    }
+
+    test "hadaGuardian es formidable" {
+        assert.that(hadaGuardian.esFormidable())
+    }
+    test "hadaHechicero no es formidable" {
+        assert.notThat(hadaHechicero.esFormidable())
+    }
+
+    test "hadaHDomador es formidable" {
+        assert.that(hadaDomador.esFormidable())
+    }
+
+}
